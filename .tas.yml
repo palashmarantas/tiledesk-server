@@ -1,0 +1,20 @@
+---
+framework: mocha
+postMerge:
+  env:
+  MONGODB_VERSION: 4.0.x
+  MONGODB_TOPOLOGY: standalone
+  pattern: 
+    - "./test/*.js"
+preMerge:
+  pattern:
+    - "./test/*.js"
+preRun:
+     command:
+        - npm run enable-ent
+        - openssl aes-256-cbc -K $encrypted_f39920166870_key -iv $encrypted_f39920166870_iv
+          -in .firebasekey.json.enc -out .firebasekey.json -d
+postRun:
+     command:
+        - node --version
+version: 2.2
